@@ -1,4 +1,4 @@
-setwd("C:/Users/geral/OneDrive - Universidad del Pacífico/Research/Academic/orthogonal_portfolios/orthogonal_temp/resultadosorthogonal")
+setwd("C:/Users/geral/OneDrive - Universidad del Pacífico/Research/Academic/orthogonal_portfolios")
 
 # library
 library(tidyverse)
@@ -12,13 +12,13 @@ source("00_aer_paper_general.r")
 source("00_aer_paper_rules_2.r")
 
 # load data
-eem  <- read.csv("clean/EEM.US_risk_ports_clean.csv")[, -1]
-eemo <- read.csv("clean/EEMO.US_risk_ports_clean.csv")[, -1]
-eemv <- read.csv("clean/EEMV.US_risk_ports_clean.csv")[, -1]
-fem  <- read.csv("clean/FEM.US_risk_ports_clean.csv")[, -1]
-ieem <- read.csv("clean/IEEM.LN_risk_ports_clean.csv")[, -1]
-psrm <- read.csv("clean/PSRM.LN_risk_ports_clean.csv")[, -1]
-vwo  <- read.csv("clean/VWO.US_risk_ports_clean.csv")[, -1]
+eem  <- read.csv("data_clean/EEM.US_risk_ports_clean.csv")[, -1]
+eemo <- read.csv("data_clean/EEMO.US_risk_ports_clean.csv")[, -1]
+eemv <- read.csv("data_clean/EEMV.US_risk_ports_clean.csv")[, -1]
+fem  <- read.csv("data_clean/FEM.US_risk_ports_clean.csv")[, -1]
+ieem <- read.csv("data_clean/IEEM.LN_risk_ports_clean.csv")[, -1]
+psrm <- read.csv("data_clean/PSRM.LN_risk_ports_clean.csv")[, -1]
+vwo  <- read.csv("data_clean/VWO.US_risk_ports_clean.csv")[, -1]
 
 etfs <- c("eem", "eemo", "eemv", "fem", "ieem", "psrm", "vwo")
 n_etfs <- length(etfs)
@@ -111,14 +111,14 @@ for (h in h_vector){ #h
       }#cada ell
     etf_sim_rets[[i]] <- results
     write.csv(etf_sim_rets[[i]], file =
-                paste0("retornos_gauss_", etfs[i], "_", h,
+                paste0("data_simulation/retornos_gauss_", etfs[i], "_", h,
                        "_portfolio_profits.csv"))
     results_etf <- rbind(results_etf, apply(results, 2, mean))
     
   }#cada etf
   final_list[[count]] <- results_etf
   write.csv(round(results_etf * 100, 3),
-            file = paste("retornos_gauss_h_", h, ".csv", sep = ""),
+            file = paste("data_simulation/retornos_gauss_h_", h, ".csv", sep = ""),
             row.names = FALSE)
   count <- count + 1
 

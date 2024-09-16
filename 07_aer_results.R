@@ -1,5 +1,6 @@
 library(tidyverse)
-setwd("C:/Users/geral/OneDrive - Universidad del Pacífico/Research/Academic/orthogonal_portfolios/")
+setwd("C:/Users/geral/OneDrive - Universidad del Pacífico/Research/Academic/orthogonal_portfolios")
+
 vector_etfs <- c("eem", "eemo", "eemv", "fem", "ieem", "psrm", "vwo")
 vector_distributions <- c("gauss","t","copula")  # Puedes incluir más distribuciones si es necesario
 vector_h <- seq(100, 500, 50)

@@ -1,4 +1,4 @@
-setwd("C:/Users/geral/OneDrive - Universidad del Pacífico/Research/Academic/orthogonal_portfolios/orthogonal_temp/resultadosorthogonal")
+setwd("C:/Users/geral/OneDrive - Universidad del Pacífico/Research/Academic/orthogonal_portfolios")
 
 library(ggplot2)
 library(tidyverse)
@@ -81,3 +81,17 @@ grid.arrange(all_plots[["gauss"]][[1]], all_plots[["gauss"]][[2]])
 grid.arrange(all_plots[["t"]][[1]], all_plots[["t"]][[2]])
 # Para copula:
 grid.arrange(all_plots[["copula"]][[1]], all_plots[["copula"]][[2]])
+
+# Guardar los gráficos para gauss
+ggsave(filename = "gauss_block1.png", plot = all_plots[["gauss"]][[1]], width = 10, height = 8)
+ggsave(filename = "gauss_block2.png", plot = all_plots[["gauss"]][[2]], width = 10, height = 8)
+ggsave(filename = "gauss.png", plot = grid.arrange(all_plots[["gauss"]][[1]], all_plots[["gauss"]][[2]]), width = 10, height = 8)
+# Guardar los gráficos para t
+ggsave(filename = "t_block1.png", plot = all_plots[["t"]][[1]], width = 10, height = 8)
+ggsave(filename = "t_block2.png", plot = all_plots[["t"]][[2]], width = 10, height = 8)
+ggsave(filename = "t.png", plot = grid.arrange(all_plots[["t"]][[1]], all_plots[["t"]][[2]]), width = 10, height = 8)
+# Guardar los gráficos para copula
+ggsave(filename = "copula_block1.png", plot = all_plots[["copula"]][[1]], width = 10, height = 8)
+ggsave(filename = "copula_block2.png", plot = all_plots[["copula"]][[2]], width = 10, height = 8)
+ggsave(filename = "copula.png", plot = grid.arrange(all_plots[["copula"]][[1]], all_plots[["copula"]][[2]]), width = 10, height = 8)
+
