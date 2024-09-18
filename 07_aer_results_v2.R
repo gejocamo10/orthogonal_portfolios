@@ -109,7 +109,7 @@ results_list <- lapply(seq_along(list_data), function(i) {
   data_for_test <- list_data[[i]]
   if (!is.null(data_for_test)) {
     distribution <- combinations$distribution[i]
-    test_result <- test_function(data_for_test, distribution = distribution, wcor = FALSE, paired_data = FALSE, h_alternative = 'greater', significance_level = 0.05)
+    test_result <- test_function(data_for_test, distribution = distribution, wcor = FALSE, paired_data = TRUE, h_alternative = 'greater', significance_level = 0.05)
     return(test_result)
   } else {
     return(NULL)
