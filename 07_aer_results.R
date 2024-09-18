@@ -12,7 +12,7 @@ names_vector <- apply(combinations, 1, function(row) {
   paste("data", row["distribution"], row["etf"], row["h"], sep = "_")
 })
 file_names <- apply(combinations, 1, function(row) {
-  paste("orthogonal_temp/resultadosorthogonal/retornos",
+  paste("data_simulation/retornos",
         row["distribution"],
         row["etf"],
         row["h"],
@@ -28,13 +28,22 @@ list_data <- setNames(lapply(file_names, function(file) {
   }
 }), names_vector)
 
-test.wilcox.function <- function(data_for_test, paired_data = FALSE, h_alternative = 'greater', significance_level = 0.05){
+test.wilcox.function <- function(data_for_test, wcor = FALSE, paired_data = FALSE, h_alternative = 'greater', significance_level = 0.05){
   colnames(data_for_test) <- c("none","cbr", "qs", "kz", "m", "q", "cbr_wcor", "qs_wcor", "kz_wcor", "m_wcor", "q_wcor")
-  kz <- data_for_test[,"kz"]
-  cbr <- data_for_test[,"cbr"]
-  m <- data_for_test[,"m"]
-  q <- data_for_test[,"q"]
-  qs <- data_for_test[,"qs"]
+  if (wcor) {
+    kz <- data_for_test[,"kz_wcor"]
+    cbr <- data_for_test[,"cbr_wcor"]
+    m <- data_for_test[,"m_wcor"]
+    q <- data_for_test[,"q_wcor"]
+    qs <- data_for_test[,"qs_wcor"]
+    
+  }else{
+    kz <- data_for_test[,"kz"]
+    cbr <- data_for_test[,"cbr"]
+    m <- data_for_test[,"m"]
+    q <- data_for_test[,"q"]
+    qs <- data_for_test[,"qs"]
+  }
   wilcoxtest_list <- list()
   wilcoxtest_vector <- c(
     wilcox.test(m,
@@ -112,11 +121,11 @@ aggregate_results <- function(result_list, combinations, result_data_number = TR
 }
 
 # Ejecuta la función Wilcoxon y agrupa los resultados
-results_list <- lapply(list_data, test.wilcox.function, paired_data = FALSE, h_alternative = 'greater', significance_level = 0.05)
+results_list <- lapply(list_data, test.wilcox.function, wcor = TRUE, paired_data = FALSE, h_alternative = 'greater', significance_level = 0.05)
 final_dataframe <- aggregate_results(results_list, combinations, result_data_number = FALSE)
 
 final_dataframe <- final_dataframe %>%
   arrange(etf, desc(distribution))
 
 write.csv(final_dataframe, 
-          file = "C:/Users/geral/OneDrive - Universidad del Pacífico/Research/Academic/orthogonal_portfolios/orthogonal_temp/resultadosorthogonal/p.values_tabla.csv", row.names = FALSE)
+          file = "C:/Users/geral/OneDrive - Universidad del Pacífico/Research/Academic/orthogonal_portfolios/p.values_tabla.csv", row.names = FALSE)
