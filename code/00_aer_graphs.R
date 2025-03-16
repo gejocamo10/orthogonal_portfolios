@@ -1,4 +1,4 @@
-setwd("C:/Users/geral/OneDrive - Universidad del Pacífico/Research/Academic/orthogonal_portfolios")
+setwd("C:/Users/YOGA/Desktop/repositories/research/orthogonal_portfolios")
 
 library(ggplot2)
 library(tidyverse)
@@ -34,7 +34,7 @@ for (env in env_names) {
     df$etf <- etfs
     combined_df <- bind_rows(combined_df, df)
   }
-  
+
   # Generar los gráficos para todos los ETFs
   etf_plots <- list()
   for (etf_value in etfs) {
