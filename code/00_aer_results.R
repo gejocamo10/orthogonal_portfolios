@@ -122,7 +122,7 @@ aggregate_results <- function(result_list, combinations, result_data_number = TR
 
 # Ejecuta la función Wilcoxon y agrupa los resultados
 results_list <- lapply(list_data, test.wilcox.function, wcor = TRUE, paired_data = FALSE, h_alternative = 'greater', significance_level = 0.05)
-final_dataframe <- aggregate_results(results_list, combinations, result_data_number = FALSE)
+final_dataframe <- aggregate_results(results_list, combinations, result_data_number = TRUE)
 
 final_dataframe <- final_dataframe %>%
   arrange(etf, desc(distribution))
